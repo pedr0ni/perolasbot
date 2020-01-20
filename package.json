@@ -1,0 +1,15 @@
+{
+  "name": "peroalsbot",
+  "version": "1.0.0",
+  "description": "Slackbot for perolas-support channel of the CI&T Support Team",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Matheus Pedroni",
+  "license": "ISC",
+  "dependencies": {
+    "slackbots": "^1.2.0"
+  }
+}
