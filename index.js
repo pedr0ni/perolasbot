@@ -22,7 +22,7 @@ bot.on('message', data => {
     
     if (!messageHandler.isCommand()) return
 
-    messageHandler.executeCommand()
+    messageHandler.executeCommand(sendMessage)
 
     console.log(`[BOT] command executed: ${messageHandler.getCommandName()}`)
 })
