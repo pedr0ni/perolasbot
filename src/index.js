@@ -1,18 +1,19 @@
-const Slackbot = require('slackbots')
-const Handler = require('./handler')
+import Slackbot from 'slackbots'
+import {Handler} from './handler'
 
-const config = require('./config.json')
-const database = require('./database/database')
+import { slackToken, channelName } from './config.json'
+import database from './database/database'
 
 console.log('[BOT] Hello CI&T Support Team, bot initializing...')
 
 const bot = new Slackbot({
-    token: config.slackToken,
+    token: slackToken,
     name: 'perolasbot'
 })
 
 bot.on('start', () => {
     console.log('[BOT] bot sucessfuly initialized')
+    new Handler().initBot()
 })
 
 bot.on('message', data => {
@@ -22,11 +23,17 @@ bot.on('message', data => {
     
     if (!messageHandler.isCommand()) return
 
-    messageHandler.executeCommand(sendMessage)
+    messageHandler.executeCommand(data)
 
     console.log(`[BOT] command executed: ${messageHandler.getCommandName()}`)
 })
 
-let sendMessage = (text) => {
-    bot.postMessageToChannel(config.channelName, text)
+bot.sendMessage = (text) => {
+    bot.postMessageToChannel(channelName, text)
 }
+
+bot.sendMessageToUser = (user, text) => {
+    bot.postMessageToUser(user, text)
+}
+
+export default bot

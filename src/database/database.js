@@ -1,10 +1,10 @@
-const fs = require('fs')
+import fs from 'fs'
 
 let dataset = []
 
 const file = './database.json'
 
-module.exports = {
+export default {
     
     loadData() {
         console.log('[DATA] Initializing databse')
